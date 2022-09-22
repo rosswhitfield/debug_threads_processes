@@ -27,6 +27,12 @@ def send():
         print(resp.status, resp.read())
 
 
-process = Process(target=send)
+def run():
+    process = Process(target=send)
+    process.start()
+    process.join()
+
+
+process = Process(target=run)
 process.start()
 process.join()
