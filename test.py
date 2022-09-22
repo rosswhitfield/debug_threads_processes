@@ -35,7 +35,5 @@ def send():
 
 t = Thread(target=sleep)
 t.start()
-process = Process(target=send)
-process.start()
-process.join()
+send()
 t.join()
