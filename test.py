@@ -13,7 +13,9 @@ if sys.platform == 'darwin':
         pass
 
 def sleep():
+    print("Start sleep")
     time.sleep(10)
+    print("End sleep")
 
 def send():
     msgs = {"hello": "world"}
