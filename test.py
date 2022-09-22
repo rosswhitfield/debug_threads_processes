@@ -18,13 +18,8 @@ def sleep():
     print("End sleep")
 
 def send():
-    msgs = {"hello": "world"}
     try:
-        req = request.Request("http://localhost",
-                              data=json.dumps(msgs).encode(),
-                              headers={'Content-Type': 'application/json'},
-                              method='POST')
-        resp = request.urlopen(req)
+        resp = request.urlopen('http://localhost')
     except error.HTTPError as e:
         print(e.code, e.read())
     except error.URLError as e:
