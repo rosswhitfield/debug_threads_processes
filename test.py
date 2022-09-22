@@ -5,6 +5,13 @@ from urllib import request, error
 import json
 import time
 
+if sys.platform == 'darwin':
+    try:
+        set_start_method('fork')
+    except RuntimeError:
+        # context can only be set once
+        pass
+
 def sleep():
     print("Start sleep")
     time.sleep(5)
