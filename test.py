@@ -30,7 +30,7 @@ def send():
 
 t = Thread(target=sleep)
 t.start()
-process = Process(target=send)
+process = Process(target=send, daemon=True)
 process.start()
 process.join()
 t.join()
