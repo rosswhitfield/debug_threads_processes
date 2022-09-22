@@ -14,7 +14,7 @@ if sys.platform == 'darwin':
 
 def sleep():
     print("Start sleep")
-    time.sleep(10)
+    time.sleep(5)
     print("End sleep")
 
 def send():
@@ -33,14 +33,9 @@ def send():
         print(resp.status, resp.read())
 
 
-def run():
-    t = Thread(target=sleep)
-    t.start()
-    process = Thread(target=send)
-    process.start()
-    process.join()
-
-
-process = Process(target=run)
+t = Thread(target=sleep)
+t.start()
+process = Process(target=send)
 process.start()
 process.join()
+t.join()
