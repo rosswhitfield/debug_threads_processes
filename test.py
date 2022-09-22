@@ -33,9 +33,9 @@ def send():
         print(resp.status, resp.read())
 
 
-#t = Thread(target=sleep)
-#t.start()
+t = Thread(target=sleep)
+t.start()
 process = Process(target=send)
 process.start()
 process.join()
-#t.join()
+t.join()
