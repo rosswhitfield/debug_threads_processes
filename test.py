@@ -1,7 +1,7 @@
 import sys
 from multiprocessing import Process, set_start_method
 from threading import Thread
-from urllib import request, error
+import urllib3
 import json
 import time
 
@@ -18,19 +18,16 @@ def sleep():
     print("End sleep")
 
 def send():
+    http = urllib3.PoolManager()
     try:
-        resp = request.urlopen('http://localhost')
-    except error.HTTPError as e:
-        print(e.code, e.read())
-    except error.URLError as e:
+        resp = http.request('GET', 'http://localhost')
+    except Exception as e:
         print(e)
-    else:
-        print(resp.status, resp.read())
 
 
 t = Thread(target=sleep)
 t.start()
-process = Process(target=send, daemon=True)
+process = Process(target=send)
 process.start()
 process.join()
 t.join()
