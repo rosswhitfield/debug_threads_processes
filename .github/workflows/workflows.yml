@@ -1,0 +1,27 @@
+name: CI
+
+on: push
+
+jobs:
+
+  tests:
+
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+          - os: macos-latest
+          - os: macos-12
+          - os: macos-10.15
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: 3.8
+    - name: Run test
+      run: python test.py
