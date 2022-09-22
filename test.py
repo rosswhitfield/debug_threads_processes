@@ -1,7 +1,9 @@
 import sys
 from multiprocessing import Process, set_start_method
+from threading import Thread
 from urllib import request, error
 import json
+import time
 
 if sys.platform == 'darwin':
     try:
@@ -10,6 +12,8 @@ if sys.platform == 'darwin':
         # context can only be set once
         pass
 
+def sleep():
+    time.sleep(10)
 
 def send():
     msgs = {"hello": "world"}
@@ -28,6 +32,8 @@ def send():
 
 
 def run():
+    t = Thread(target=sleep)
+    t.start()
     process = Process(target=send)
     process.start()
     process.join()
