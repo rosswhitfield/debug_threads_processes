@@ -1,7 +1,13 @@
+import sys
 from multiprocessing import Process, set_start_method
 from urllib import request
 
-set_start_method('fork')
+if sys.platform == 'darwin':
+    try:
+        set_start_method('fork')
+    except RuntimeError:
+        # context can only be set once
+        pass
 
 def send():
     with request.urlopen('http://www.python.org/') as f:
