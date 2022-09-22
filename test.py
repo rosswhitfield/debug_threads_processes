@@ -1,5 +1,7 @@
-from multiprocessing import Process
+from multiprocessing import Process, set_start_method
 from urllib import request
+
+set_start_method('fork')
 
 def send():
     with request.urlopen('http://www.python.org/') as f:
